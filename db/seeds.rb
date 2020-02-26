@@ -5,3 +5,25 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# db/seeds.rb
+puts 'Cleaning database...'
+Restaurant.destroy_all
+
+puts 'Creating restaurants...'
+
+categories = ["chinese", "italian", "japanese", "french", "belgian"].sample
+
+restaurants_attributes = [
+  {
+    name: Faker::Name.name,
+    address: Faker::Address.full_address,
+    category: categories,
+    phone_number: Faker::PhoneNumber
+  }
+]
+10.times do
+  Restaurant.create!(restaurants_attributes)
+end
+
+puts 'Finished!'
